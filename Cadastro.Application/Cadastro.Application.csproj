@@ -7,13 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CadastroDeConsultas\CadastroDeConsultas.csproj" />
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Mapper\" />
-    <Folder Include="Services\" />
-    <Folder Include="ViewModels\" />
+    <ProjectReference Include="..\Cadastro.Domain\Cadastro.Domain.csproj" />
   </ItemGroup>
 
 </Project>

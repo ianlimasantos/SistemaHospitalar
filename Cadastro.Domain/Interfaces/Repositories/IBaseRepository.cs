@@ -9,7 +9,8 @@ namespace Cadastro.Domain.Interfaces.Repositories
 {
     public interface IBaseRepository<T> where T : class
     {
-        Task<T> GetByIdAsync(int id);
+        IUnitOfWork UnitOfWork { get; }
+        Task<T> GetByIdAsync(long id);
         Task<IEnumerable<T>> GetAll(Expression<Func<T, bool>> predicate);
     }
 }

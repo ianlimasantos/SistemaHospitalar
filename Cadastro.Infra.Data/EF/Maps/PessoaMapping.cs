@@ -27,9 +27,6 @@ namespace Cadastro.Infra.Data.EF.Maps
                 .HasMaxLength(200)
                 .IsRequired();
 
-            builder.Property(x => x.Ativo)
-                .IsRequired();
-
             builder.Property(x => x.DataNascimento)
                 .IsRequired();
 
