@@ -9,7 +9,8 @@
         public DateTime DataFim { get; private set; }
         public DateTime DataCadastro { get; private set; }
         public DateTime DataUpdate { get; private set; }
-
+        public virtual Medico medico { get; private set; }
+        public virtual Paciente paciente { get; private set; }
         public Consulta(long medicoId, long pacienteId, DateTime dataInicio, DateTime dataFim)
         {
             MedicoId = medicoId;

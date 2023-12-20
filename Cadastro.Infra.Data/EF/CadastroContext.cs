@@ -24,8 +24,11 @@ namespace Cadastro.Infra.Data.EF
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new PessoaMapping());
+            modelBuilder.ApplyConfiguration(new MedicoMapping());
             base.OnModelCreating(modelBuilder);
         }
         public DbSet<Pessoa> Pessoas { get; set; }
+        public DbSet<Paciente> Pacientes { get; set; }
+        public DbSet<Medico> Medicos { get; set; }
     }
 }
