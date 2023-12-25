@@ -10,8 +10,8 @@ namespace Cadastro.Consulta.Controllers
     [ApiController]
     public class PessoaController : ControllerBase
     {
-        private readonly IPessoaAppService _pessoaAppService; 
-        public PessoaController(IPessoaAppService pessoaAppService) 
+        private readonly IPessoaAppService _pessoaAppService;
+        public PessoaController(IPessoaAppService pessoaAppService)
         {
             _pessoaAppService = pessoaAppService;
         }
@@ -30,7 +30,7 @@ namespace Cadastro.Consulta.Controllers
         {
             var result = await _pessoaAppService.ListarUmaPessoa(id);
             if (result == null) return BadRequest("Não foi possível listar nenhum usuário");
-            return Ok(result); 
+            return Ok(result);
         }
 
         [HttpGet]
@@ -47,6 +47,15 @@ namespace Cadastro.Consulta.Controllers
             var result = await _pessoaAppService.AtualizarPessoa(vm);
             if (result == null) return BadRequest("Não foi possível atualizar a pessoa");
             return Ok(result);
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> DeletarPessoa(long id)
+        {
+            var result = await _pessoaAppService.DeletarPessoa(id);
+            if (!result) return BadRequest("Não foi possível deletar a pessoa");
+            return Ok("A pessoa de id {id} foi removida com sucesso!");
         }
     }
 }

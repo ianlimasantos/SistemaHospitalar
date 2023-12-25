@@ -6,7 +6,6 @@ namespace Cadastro.Domain.Interfaces.Repositories
     {
         Task CadastrarMedico(Medico medico);
         Task AtualizarMedico(Medico medico);
-        Task ListarMedicoPorId(long id);
         Task<IEnumerable<Medico>> ListarMedicos();
         Task DeletarMedico(Medico medico);
     }

@@ -48,14 +48,22 @@ namespace Cadastro.Application.Services
             return _mapper.Map<MedicoViewModel>(medicoAtualizado);
         }
 
-        public Task<bool> DeletarUsuario(long id)
+        public async Task<bool> DeletarMedico(long id)
         {
-            throw new NotImplementedException();
+            return await _medicoService.DeletarMedico(id);
+        }
+        public async Task<MedicoViewModel> ListarMedicoPorId(long id)
+        {
+            var medico = await _medicoService.ListarMedicoPorId(id);
+            return _mapper.Map<MedicoViewModel>(medico);
+
+        }
+        public async Task<IEnumerable<MedicoViewModel>> ListarMedicos()
+        {
+            var medicos = await _medicoService.ListarMedicos();
+            return _mapper.Map<IEnumerable<MedicoViewModel>>(medicos);
         }
 
-        public Task<IEnumerable<MedicoViewModel>> ListarMedicos()
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }

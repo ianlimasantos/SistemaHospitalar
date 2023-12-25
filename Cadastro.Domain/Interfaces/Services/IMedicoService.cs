@@ -14,6 +14,6 @@ namespace Cadastro.Domain.Interfaces.Services
         Task<Medico> AtualizarMedico(AtualizarMedicoCommand command);
         Task<Medico> ListarMedicoPorId(long id);
         Task<IEnumerable<Medico>> ListarMedicos();
-        Task<bool> DeletarMedico(Medico medico);
+        Task<bool> DeletarMedico(long id);
     }
 }

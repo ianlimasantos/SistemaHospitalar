@@ -31,5 +31,33 @@ namespace Cadastro.Consulta.Controllers
             if (result == null) return BadRequest("Não havia nenhum médico com esse id");
             return Ok(result);
         }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> DeletarMedico(long id)
+        {
+            var result = await _medicoAppService.DeletarMedico(id);
+            if (!result) return BadRequest($"Não foi possível excluir o Médico{id}");
+            if(result) return Ok("Excluído!");
+            return NotFound($"Não foi achado o médico com o id - {id}");
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<IActionResult> ListarMedicoPorId(long id)
+        {
+            var result = await _medicoAppService.ListarMedicoPorId(id);
+            if (result == null) return BadRequest($"Não tem nenhum médico com o id {id}");
+            return Ok(result);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ListarTodosMedicos()
+        {
+            var result = await _medicoAppService.ListarMedicos();
+            if (result == null) return BadRequest("Não tem nenhum médico cadastrado");
+            return Ok(result);
+        } 
+
     }
 }

@@ -11,8 +11,8 @@ namespace Cadastro.Application.Services.Interfaces
     {
         Task<MedicoViewModel> CadastrarMedico(NovoMedicoViewModel novoMedicoViewModel);
         Task<MedicoViewModel> AtualizarMedico(AtualizarMedicoViewModel atualizarMedicoViewModel);
+        Task<MedicoViewModel> ListarMedicoPorId(long id);
         Task<IEnumerable<MedicoViewModel>> ListarMedicos();
-        Task<bool> DeletarUsuario(long id);
-
+        Task<bool> DeletarMedico(long id);
     }
 }

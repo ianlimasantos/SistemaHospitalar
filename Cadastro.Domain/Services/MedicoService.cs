@@ -40,19 +40,27 @@ namespace Cadastro.Domain.Services
             return medico;
         }
 
-        public Task<bool> DeletarMedico(Medico medico)
+        public async Task<bool> DeletarMedico(long id)
         {
-            throw new NotImplementedException();
+            var medico = await _medicoRepository.GetByIdAsync(id);
+            if (medico == null) return false;
+            await _medicoRepository.DeletarMedico(medico);
+            await _medicoRepository.UnitOfWork.SaveChangesAsync();
+            return true;
         }
 
-        public Task<Medico> ListarMedicoPorId(long id)
+        public async Task<Medico> ListarMedicoPorId(long id)
         {
-            throw new NotImplementedException();
+            var medico = await _medicoRepository.GetByIdAsync(id);
+            if (medico == null) return null;
+            return medico;
         }
 
-        public Task<IEnumerable<Medico>> ListarMedicos()
+        public async Task<IEnumerable<Medico>> ListarMedicos()
         {
-            throw new NotImplementedException();
+            var  medicos = await _medicoRepository.ListarMedicos();
+            if(medicos == null) return null;
+            return medicos;
         }
     }
 }

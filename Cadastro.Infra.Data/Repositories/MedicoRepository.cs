@@ -36,11 +36,6 @@ namespace Cadastro.Infra.Data.Repositories
             await Task.FromResult(_context.Medicos.Remove(medico));
         }
 
-        public Task ListarMedicoPorId(long id)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<IEnumerable<Medico>> ListarMedicos()
         {
             return await _context.Medicos.ToListAsync();

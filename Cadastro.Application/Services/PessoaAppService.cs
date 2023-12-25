@@ -49,7 +49,6 @@ namespace Cadastro.Application.Services
         public async Task<bool> DeletarPessoa(long id)
         {
             return await _pessoaService.DeletarPessoa(id);
-
         }
 
         public async Task<IEnumerable<PessoaViewModel>> ListarPessoas()
