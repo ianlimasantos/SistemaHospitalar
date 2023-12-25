@@ -29,7 +29,16 @@ namespace Cadastro.Infra.Data.EF.Maps
                 .IsRequired();
 
             builder.HasMany(x => x.EnderecoConsultorios)
-                .WithOne(x => x.Medico)
+                .WithOne(x => x.Medico);
+
+            builder.Property(x => x.DataCadastro)
+                .IsRequired();
+
+            builder.Property(x => x.DataUpdate)
+                .IsRequired();
+
+            builder.Property(x => x.PessoaId)
+                .IsRequired();
         }
     }
 }

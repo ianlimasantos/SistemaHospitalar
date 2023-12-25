@@ -30,5 +30,6 @@ namespace Cadastro.Infra.Data.EF
         public DbSet<Pessoa> Pessoas { get; set; }
         public DbSet<Paciente> Pacientes { get; set; }
         public DbSet<Medico> Medicos { get; set; }
+        public DbSet<EnderecoConsultorio> EnderecoConsultorios { get; set; }
     }
 }

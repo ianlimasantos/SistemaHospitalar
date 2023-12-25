@@ -23,7 +23,16 @@ namespace Cadastro.Infra.Data.Repositories.Abstract
 
         public async Task<T> GetByIdAsync(long id)
         {
-            return await _context.Set<T>().FindAsync(id);
+            try
+            {
+                var teste = await _context.Set<T>().FindAsync(id);
+                return teste;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("AAAAAAAAAAAA " + ex);
+                return await _context.Set<T>().FindAsync(id);
+            }
         }
         public async Task<IEnumerable<T>> GetAll(Expression<Func<T, bool>> predicate)
         {

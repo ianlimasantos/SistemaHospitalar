@@ -14,6 +14,7 @@ namespace Cadastro.Application.Mapper
         public DomainToViewModelProfile() 
         {
             CreateMap<Pessoa, PessoaViewModel>();
+            CreateMap<Medico, MedicoViewModel>();
         }
     }
 }

@@ -33,6 +33,12 @@ namespace Cadastro.Infra.IoC
             services.AddScoped<IPessoaAppService, PessoaAppService>();
             services.AddScoped<IPessoaService, PessoaService>();
             services.AddScoped<IPessoaRepository, PessoaRepository>();
+            services.AddScoped<IMedicoAppService, MedicoAppService>();
+            services.AddScoped<IMedicoService, MedicoService>();
+            services.AddScoped<IMedicoRepository, MedicoRepository>();
+            services.AddScoped<IEnderecoConsultorioAppService, EnderecoConsultorioAppService>();
+            services.AddScoped<IEnderecoConsultorioService, EnderecoConsultorioService>();
+            services.AddScoped<IEnderecoConsultorioRepository, EnderecoConsultorioRepository>();
 
             return services;
         }
