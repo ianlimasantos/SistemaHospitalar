@@ -1,4 +1,4 @@
-﻿/*using Cadastro.Domain.Interfaces.Repositories;
+﻿using Cadastro.Domain.Interfaces.Repositories;
 using Cadastro.Domain.Interfaces.Services;
 using Cadastro.Domain.Models;
 using Cadastro.Domain.Models.Commands;
@@ -16,31 +16,39 @@ namespace Cadastro.Domain.Services
 
         public PacienteService(IPacienteRepository pacienteRepository)
         {
-            _pacienteRepository = pacienteRepository;
+            _pacienteRepository = pacienteRepository; 
         }
 
-        public Task AtualizarPaciente(AtualizarPacienteCommand paciente)
+        public async Task<Paciente> CadastrarPaciente(Paciente paciente)
+        {
+            await _pacienteRepository.CadastrarPaciente(paciente);
+            await _pacienteRepository.UnitOfWork.SaveChangesAsync();
+            return paciente;
+        }
+
+        public async Task<Paciente> AtualizarPaciente(AtualizarPacienteCommand command)
+        {
+            var paciente = await _pacienteRepository.GetByIdAsync(command.Id);
+            if (paciente == null) return null;
+
+            paciente.Atualizar(command.Telefone, command.Validade_Cartao, command.Ativo);
+            await _pacienteRepository.UnitOfWork.SaveChangesAsync();
+            return paciente;
+        }
+
+
+
+        public Task<bool> DeletarPaciente(long id)
         {
             throw new NotImplementedException();
         }
 
-        public async Task CadastrarPaciente(Paciente paciente)
-        {
-         //   await _pacienteRepository.CadastrarPaciente(paciente);
-           // return 
-        }
-
-        public Task DeletarPaciente(long id)
+        public Task<Paciente> InativarPaciente(long id)
         {
             throw new NotImplementedException();
         }
 
-        public Task InativarPaciente(long id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task ListarPacientePorId(long id)
+        public Task<Paciente> ListarPacientePorId(long id)
         {
             throw new NotImplementedException();
         }
@@ -51,4 +59,3 @@ namespace Cadastro.Domain.Services
         }
     }
 }
-*/

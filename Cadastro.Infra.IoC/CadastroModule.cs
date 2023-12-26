@@ -36,9 +36,12 @@ namespace Cadastro.Infra.IoC
             services.AddScoped<IMedicoAppService, MedicoAppService>();
             services.AddScoped<IMedicoService, MedicoService>();
             services.AddScoped<IMedicoRepository, MedicoRepository>();
-            services.AddScoped<IEnderecoConsultorioAppService, EnderecoConsultorioAppService>();
+            //services.AddScoped<IEnderecoConsultorioAppService, EnderecoConsultorioAppService>();
             services.AddScoped<IEnderecoConsultorioService, EnderecoConsultorioService>();
             services.AddScoped<IEnderecoConsultorioRepository, EnderecoConsultorioRepository>();
+            services.AddScoped<IPacienteRepository, PacienteRepository>();
+            services.AddScoped<IPacienteService, PacienteService>();
+            services.AddScoped<IPacienteAppService, PacienteAppService>();
 
             return services;
         }

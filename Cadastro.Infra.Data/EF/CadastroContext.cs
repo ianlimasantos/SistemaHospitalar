@@ -25,6 +25,7 @@ namespace Cadastro.Infra.Data.EF
         {
             modelBuilder.ApplyConfiguration(new PessoaMapping());
             modelBuilder.ApplyConfiguration(new MedicoMapping());
+            modelBuilder.ApplyConfiguration(new PacienteMapping());
             base.OnModelCreating(modelBuilder);
         }
         public DbSet<Pessoa> Pessoas { get; set; }

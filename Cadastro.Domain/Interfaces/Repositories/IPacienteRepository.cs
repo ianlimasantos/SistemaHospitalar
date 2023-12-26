@@ -2,13 +2,11 @@
 
 namespace Cadastro.Domain.Interfaces.Repositories
 {
-    public interface IPacienteRepository
+    public interface IPacienteRepository : IBaseRepository<Paciente>
     {
         Task CadastrarPaciente(Paciente paciente);
         Task AtualizarPaciente(Paciente paciente);
-        Task ListarPacientePorId(long id);
         Task <IEnumerable<Paciente>> ListarPacientes();
-        Task InativarPaciente(Paciente paciente);
         Task DeletarPaciente(Paciente paciente);
     }
 }
