@@ -15,7 +15,11 @@ namespace Cadastro.Infra.Data.Repositories
     {
         private readonly CadastroContext _context;
 
-        public PacienteRepository(CadastroContext context) : base(context){ }
+        public PacienteRepository(CadastroContext context) : base(context)
+        {
+            _context = context;
+        }
+
         public async Task CadastrarPaciente(Paciente paciente)
         {
             await _context.Pacientes.AddAsync(paciente);

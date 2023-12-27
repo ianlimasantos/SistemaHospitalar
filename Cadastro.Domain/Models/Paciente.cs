@@ -36,6 +36,11 @@ namespace Cadastro.Domain.Models
             DataUpdate = DateTime.Now;
             Ativo = ativo;
         }
-        
+
+        public void Inativar()
+        {
+            Ativo = false;
+            DataUpdate = DateTime.Now;
+        }
     }
 }

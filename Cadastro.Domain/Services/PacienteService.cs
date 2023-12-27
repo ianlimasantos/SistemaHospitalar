@@ -36,26 +36,35 @@ namespace Cadastro.Domain.Services
             return paciente;
         }
 
-
-
-        public Task<bool> DeletarPaciente(long id)
+        public async Task<bool> DeletarPaciente(long id)
         {
-            throw new NotImplementedException();
+            var paciente = await _pacienteRepository.GetByIdAsync(id);
+            if (paciente == null) return false;
+
+            await _pacienteRepository.DeletarPaciente(paciente);
+            await _pacienteRepository.UnitOfWork.SaveChangesAsync();
+            return true;
         }
 
-        public Task<Paciente> InativarPaciente(long id)
+        public async Task<Paciente> InativarPaciente(long id)
         {
-            throw new NotImplementedException();
+            var paciente = await _pacienteRepository.GetByIdAsync(id);
+            if (paciente == null) return null;
+
+            paciente.Inativar();
+            await _pacienteRepository.AtualizarPaciente(paciente);
+            await _pacienteRepository.UnitOfWork.SaveChangesAsync();
+            return paciente;
         }
 
-        public Task<Paciente> ListarPacientePorId(long id)
+        public async Task<Paciente> ListarPacientePorId(long id)
         {
-            throw new NotImplementedException();
+            return await _pacienteRepository.GetByIdAsync(id);
         }
 
-        public Task<IEnumerable<Paciente>> ListarPacientes()
+        public async Task<IEnumerable<Paciente>> ListarPacientes()
         {
-            throw new NotImplementedException();
+            return await _pacienteRepository.ListarPacientes();
         }
     }
 }

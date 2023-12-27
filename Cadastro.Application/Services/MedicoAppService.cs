@@ -4,12 +4,6 @@ using Cadastro.Application.ViewModels;
 using Cadastro.Domain.Interfaces.Services;
 using Cadastro.Domain.Models;
 using Cadastro.Domain.Models.Commands;
-using Cadastro.Domain.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cadastro.Application.Services
 {
