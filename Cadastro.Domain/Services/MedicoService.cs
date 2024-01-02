@@ -21,8 +21,10 @@ namespace Cadastro.Domain.Services
 
         public async Task<Medico> CadastrarMedico(Medico medico)
         {
+            var teste = medico;
             await _medicoRepository.CadastrarMedico(medico);
             await _medicoRepository.UnitOfWork.SaveChangesAsync();
+            var teste2 = teste;
             return medico;
         }
 

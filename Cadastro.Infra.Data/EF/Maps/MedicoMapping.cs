@@ -37,8 +37,9 @@ namespace Cadastro.Infra.Data.EF.Maps
             builder.Property(x => x.DataUpdate)
                 .IsRequired();
 
-            builder.Property(x => x.PessoaId)
-                .IsRequired();
+            builder.HasOne(x => x.Pessoa)
+                .WithOne(x => x.Medico)
+                .HasForeignKey<Medico>(x => x.PessoaId);
         }
     }
 }

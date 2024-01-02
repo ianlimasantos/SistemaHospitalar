@@ -6,27 +6,35 @@
         public long MedicoId { get; private set; }
         public long PacienteId { get; private set; }
         public DateTime DataInicio { get; private set; }
-        public DateTime DataFim { get; private set; }
         public DateTime DataCadastro { get; private set; }
         public DateTime DataUpdate { get; private set; }
-        public virtual Medico medico { get; private set; }
-        public virtual Paciente paciente { get; private set; }
-        public Consulta(long medicoId, long pacienteId, DateTime dataInicio, DateTime dataFim)
+        public bool Ativo { get; private set; }
+        public MotivoCancelamento MotivoCancelamento { get; private set; }
+        public virtual Medico Medico { get; private set; }
+        public virtual Paciente Paciente { get; private set; }
+
+        public Consulta(long medicoId, long pacienteId, DateTime dataInicio)
+        {
+         //   MedicoId = medicoId;
+            PacienteId = pacienteId;
+            DataInicio = dataInicio;
+            DataCadastro = DateTime.Now;
+            DataUpdate = DateTime.Now;
+            Ativo = true;
+        }   
+
+        public void Atualizar(long medicoId, long pacienteId, DateTime dataInicio) 
         {
             MedicoId = medicoId;
             PacienteId = pacienteId;
             DataInicio = dataInicio;
-            DataFim = dataFim;
-            DataCadastro = DateTime.Now;
             DataUpdate = DateTime.Now;
-        }   
+        }
 
-        public void Atualizar(long medicoId, DateTime dataInicio, DateTime dataFim) 
+        public void CancelarConsulta(MotivoCancelamento motivoCancelamento)
         {
-            MedicoId = medicoId;
-            DataInicio = dataInicio;
-            DataFim = dataFim;
-            DataUpdate = DateTime.Now;
+            Ativo = false;
+            MotivoCancelamento = motivoCancelamento;
         }
     }
 }

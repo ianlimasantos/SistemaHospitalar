@@ -42,7 +42,9 @@ namespace Cadastro.Infra.IoC
             services.AddScoped<IPacienteRepository, PacienteRepository>();
             services.AddScoped<IPacienteService, PacienteService>();
             services.AddScoped<IPacienteAppService, PacienteAppService>();
-
+            services.AddScoped<IConsultaRepository, ConsultaRepository>();
+            services.AddScoped<IConsultaService, ConsultaService>();
+            services.AddScoped<IConsultaAppService, ConsultaAppService>();
             return services;
         }
     }

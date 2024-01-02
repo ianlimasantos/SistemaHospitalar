@@ -16,6 +16,7 @@ namespace Cadastro.Application.Mapper
             CreateMap<Pessoa, PessoaViewModel>();
             CreateMap<Medico, MedicoViewModel>();
             CreateMap<Paciente, PacienteViewModel>();
+            CreateMap<Consulta, ConsultaViewModel>();
         }
     }
 }

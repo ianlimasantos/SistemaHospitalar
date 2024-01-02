@@ -15,7 +15,8 @@ namespace Cadastro.Domain.Models
         public DateTime DataNascimento { get; private set; }
         public DateTime DataCadastro { get; private set; }
         public DateTime DataUpdate { get; private set; }
-        public virtual Paciente Paciente { get; private set; }  
+        public virtual Paciente Paciente { get; private set; }
+        public virtual Medico Medico { get; private set; }
         public virtual Endereco Endereco { get; private set; }
 
         public Pessoa(string nome, string cPF, string email, DateTime dataNascimento)
