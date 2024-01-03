@@ -10,12 +10,11 @@
         public DateTime DataUpdate { get; private set; }
         public bool Ativo { get; private set; }
         public MotivoCancelamento MotivoCancelamento { get; private set; }
-        public virtual Medico Medico { get; private set; }
-        public virtual Paciente Paciente { get; private set; }
+        public virtual Paciente Paciente { get; set; }
 
         public Consulta(long medicoId, long pacienteId, DateTime dataInicio)
         {
-         //   MedicoId = medicoId;
+            MedicoId = medicoId;
             PacienteId = pacienteId;
             DataInicio = dataInicio;
             DataCadastro = DateTime.Now;

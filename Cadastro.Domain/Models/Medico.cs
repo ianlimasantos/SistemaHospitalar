@@ -14,7 +14,6 @@
         public ICollection<Consulta> Consultas { get; private set; }
         public ICollection<EnderecoConsultorio> EnderecoConsultorios { get; private set; }
         public virtual Pessoa Pessoa { get; private set; }
-        public virtual Consulta Consulta { get; private set; }
 
         public Medico(long pessoaId, string cRM, Especialidade especialidade, string email,
               string telefone, bool ativo)

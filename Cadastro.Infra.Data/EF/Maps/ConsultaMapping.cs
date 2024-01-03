@@ -10,13 +10,16 @@ namespace Cadastro.Infra.Data.EF.Maps
         {
             builder.HasKey(x => x.Id);
    
-            builder.Property(x => x.MedicoId).
-                IsRequired();
-
-            builder.Property(x => x.PacienteId)
+            builder.Property(x => x.MedicoId)
+                .HasColumnName("MedicoId")
                 .IsRequired();
 
-            builder.Property(x => x.DataInicio);
+            builder.Property(x => x.PacienteId)
+                .HasColumnName("PacienteId")
+                .IsRequired();
+
+            builder.Property(x => x.DataInicio)
+                .IsRequired();
 
             builder.Property(x => x.DataCadastro)
                 .IsRequired();
@@ -28,11 +31,6 @@ namespace Cadastro.Infra.Data.EF.Maps
 
             builder.Property(x => x.MotivoCancelamento)
                 .IsRequired();
-
-            builder.HasOne(x => x.Medico)
-                .WithMany(x => x.Consultas)
-                .HasForeignKey(x => x.MedicoId);
-                
         }
     }
 }

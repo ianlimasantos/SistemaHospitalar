@@ -13,7 +13,9 @@ namespace Cadastro.Infra.Data.EF
         {
             ChangeTracker.LazyLoadingEnabled = false;
             CriarBancoCasoNaoExista();
-        }    
+        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    => optionsBuilder.LogTo(Console.WriteLine);
 
         private void CriarBancoCasoNaoExista()
         {
