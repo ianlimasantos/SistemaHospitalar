@@ -3,6 +3,7 @@ using Cadastro.Application.Services.Interfaces;
 using Cadastro.Application.ViewModels;
 using Cadastro.Domain.Interfaces.Services;
 using Cadastro.Domain.Models;
+using Cadastro.Domain.Models.Commands;
 
 namespace Cadastro.Application.Services
 {
@@ -24,9 +25,20 @@ namespace Cadastro.Application.Services
             return _mapper.Map<ConsultaViewModel>(consulta);
         }
 
-        public Task<ConsultaViewModel> AtualizarConsulta(AtualizarConsultaViewModel consultaViewModel)
+        public async Task<ConsultaViewModel> AtualizarConsulta(AtualizarConsultaViewModel atualizarConsultaViewModel)
         {
-            throw new NotImplementedException();
+            var command = new AtualizarConsultaCommand
+            {
+                Id = atualizarConsultaViewModel.Id,
+                MedicoId = atualizarConsultaViewModel.MedicoId,
+                PacienteId = atualizarConsultaViewModel.PacienteId,
+                DataInicio = atualizarConsultaViewModel.DataInicio,
+                DataUpdate = DateTime.Now
+            };
+
+            var consulta = await _consultaService.AtualizarConsulta(command);
+            return _mapper.Map<ConsultaViewModel>(consulta);
+
         }
 
         public Task<bool> DeletarConsulta(long Id)

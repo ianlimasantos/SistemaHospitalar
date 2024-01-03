@@ -16,11 +16,23 @@ namespace Cadastro.Consulta.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CadastrarConsulta([FromBody] NovaConsultaViewModel vm) 
+        public async Task<IActionResult> CadastrarConsulta([FromBody] NovaConsultaViewModel vm)
         {
             var result = await _consultaAppService.CadastrarConsulta(vm);
             if (result == null) return BadRequest("Não foi possível realizar o cadastro");
             return Ok(result);
         }
+
+        /*
+        [HttpPut]
+        public async Task<IActionResult> AtualizarConsulta()
+        {
+            var result = await _consultaAppService.AtualizarConsulta();
+        }
+
+        
+        [HttpGet]
+        [Route("{id}")]
+        */
     }
 }

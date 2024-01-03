@@ -13,10 +13,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Cadastro.Infra.IoC\Cadastro.Infra.IoC.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="NomedaMigracao\" />
-  </ItemGroup>
 	
     
 
