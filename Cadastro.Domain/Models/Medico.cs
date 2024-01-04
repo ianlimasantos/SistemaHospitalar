@@ -11,8 +11,8 @@
         public bool Ativo { get; private set; }
         public DateTime DataCadastro { get; private set; }
         public DateTime DataUpdate { get; private set; }
-        public ICollection<Consulta> Consultas { get; private set; }
-        public ICollection<EnderecoConsultorio> EnderecoConsultorios { get; private set; }
+        public virtual ICollection<Consulta> Consultas { get; private set; }
+        public virtual ICollection<EnderecoConsultorio> EnderecoConsultorios { get; private set; }
         public virtual Pessoa Pessoa { get; private set; }
 
         public Medico(long pessoaId, string cRM, Especialidade especialidade, string email,

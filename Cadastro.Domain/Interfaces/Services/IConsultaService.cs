@@ -14,6 +14,6 @@ namespace Cadastro.Domain.Interfaces.Services
         Task<Consulta> ListarConsultaPeloId(long id);
         Task<IEnumerable<Consulta>> ListarConsultas();
         Task<Consulta> AtualizarConsulta(AtualizarConsultaCommand command);
-        Task <bool> DeletarConsulta(Consulta consulta);
+        Task <bool> DeletarConsulta(long id);
     }
 }

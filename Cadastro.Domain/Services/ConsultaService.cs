@@ -45,19 +45,26 @@ namespace Cadastro.Domain.Services
 
         }
 
-        public Task<bool> DeletarConsulta(Consulta consulta)
+        public async Task<bool> DeletarConsulta(long id)
         {
-            throw new NotImplementedException();
+            var consulta = await _consultaRepository.GetByIdAsync(id);
+            if (consulta == null) return false;
+
+            await _consultaRepository.DeletarConsulta(consulta);
+            await _consultaRepository.UnitOfWork.SaveChangesAsync();
+            return true;
         }
 
-        public Task<Consulta> ListarConsultaPeloId(long id)
+        public async Task<Consulta> ListarConsultaPeloId(long id)
         {
-            throw new NotImplementedException();
+            return await _consultaRepository.GetByIdAsync(id);
         }
 
-        public Task<IEnumerable<Consulta>> ListarConsultas()
+        public async Task<IEnumerable<Consulta>> ListarConsultas()
         {
-            throw new NotImplementedException();
+            var consultas = await _consultaRepository.ListarConsultas();
+            if (consultas == null) return null;
+            return consultas;
         }
     }
 }

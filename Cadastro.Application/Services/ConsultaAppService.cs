@@ -41,19 +41,21 @@ namespace Cadastro.Application.Services
 
         }
 
-        public Task<bool> DeletarConsulta(long Id)
+        public async Task<bool> DeletarConsulta(long id)
         {
-            throw new NotImplementedException();
+            return await _consultaService.DeletarConsulta(id); 
         }
 
-        public Task<ConsultaViewModel> ListarConsultaPeloId(long id)
+        public async Task<ConsultaViewModel> ListarConsultaPeloId(long id)
         {
-            throw new NotImplementedException();
+            var consulta = await _consultaService.ListarConsultaPeloId(id);
+            return _mapper.Map<ConsultaViewModel>(consulta);
         }
 
-        public Task<IEnumerable<ConsultaViewModel>> ListarConsultas()
+        public async Task<IEnumerable<ConsultaViewModel>> ListarConsultas()
         {
-            throw new NotImplementedException();
+            var consulta = await _consultaService.ListarConsultas();
+            return _mapper.Map<IEnumerable<ConsultaViewModel>>(consulta);
         }
     }
 }

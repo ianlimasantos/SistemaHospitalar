@@ -15,7 +15,8 @@ namespace Cadastro.Domain.Models
         public DateTime Validade_Cartao { get; private set; }
         public DateTime DataCadastro { get; private set; }
         public DateTime DataUpdate { get; private set; }
-        public bool Ativo { get; private set; }     
+        public bool Ativo { get; private set; }
+        public virtual ICollection<Consulta> Consultas { get; private set; }
         public virtual Pessoa Pessoa { get; private set; }
 
         public Paciente(long pessoaId, string cartaoSUS, string telefone, DateTime validade_Cartao, bool ativo)
