@@ -13,5 +13,6 @@ namespace Cadastro.Domain.Interfaces.Repositories
         Task<IEnumerable<Consulta>> ListarConsultas(); 
         Task AtualizarConsulta(Consulta consulta);
         Task DeletarConsulta(Consulta consulta);
+        Task<bool> ValidaMedicoPacientePessoasDiferentes(Consulta consulta);
     }
 }

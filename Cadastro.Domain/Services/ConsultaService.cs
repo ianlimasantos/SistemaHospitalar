@@ -21,13 +21,10 @@ namespace Cadastro.Domain.Services
         public async Task<Consulta> CadastrarConsulta(Consulta consulta)
         {
             await _consultaRepository.CadastrarConsulta(consulta);
-            try
-            {
-                await _consultaRepository.UnitOfWork.SaveChangesAsync();
-            } catch(Exception ex)
-            {
-                var erro = ex;
-            }
+            var pessoasDiferentes = await _consultaRepository.ValidaMedicoPacientePessoasDiferentes(consulta);
+            if (!pessoasDiferentes) return null;
+            
+            await _consultaRepository.UnitOfWork.SaveChangesAsync();
             
             return consulta;
         }

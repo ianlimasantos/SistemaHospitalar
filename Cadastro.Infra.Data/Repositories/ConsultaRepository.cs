@@ -33,5 +33,33 @@ namespace Cadastro.Infra.Data.Repositories
         {
             return await _context.Consultas.ToListAsync();
         }
+
+        public async Task<bool> ValidaMedicoPacientePessoasDiferentes(Consulta consulta)
+        {
+
+            var pessoaIdPaciente = consulta.Paciente.PessoaId;
+            var pessoaIdMedico = consulta.Medico.PessoaId;
+
+            if (pessoaIdPaciente == pessoaIdMedico) return false;
+            return true;
+            /*
+            var pessoaIdMedico = _context.Consultas
+                .Where(c => c.Id == consulta.Id)
+                .Include(c => c.Medico.Pessoa)
+                .Select(c => c.Medico.PessoaId);
+
+            var teste = pessoaIdMedico;
+
+            var pessoaIdPaciente = _context.Consultas
+                .Where(c => c.Id == consulta.Id)
+                .Include(c => c.Paciente.Pessoa)
+                .Select(c => c.Paciente.PessoaId);
+            
+
+            if (pessoaIdMedico == pessoaIdPaciente) return false;
+            return true;
+
+            */
+        }
     }
 }
