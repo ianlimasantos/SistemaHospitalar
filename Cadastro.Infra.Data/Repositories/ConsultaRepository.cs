@@ -34,6 +34,7 @@ namespace Cadastro.Infra.Data.Repositories
             return await _context.Consultas.ToListAsync();
         }
 
+        /*
         public async Task<bool> ValidaMedicoPacientePessoasDiferentes(Consulta consulta)
         {
 
@@ -42,7 +43,7 @@ namespace Cadastro.Infra.Data.Repositories
 
             if (pessoaIdPaciente == pessoaIdMedico) return false;
             return true;
-            /*
+            
             var pessoaIdMedico = _context.Consultas
                 .Where(c => c.Id == consulta.Id)
                 .Include(c => c.Medico.Pessoa)
@@ -60,6 +61,6 @@ namespace Cadastro.Infra.Data.Repositories
             return true;
 
             */
-        }
     }
+}
 }

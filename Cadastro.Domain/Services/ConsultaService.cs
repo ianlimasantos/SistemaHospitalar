@@ -13,20 +13,45 @@ namespace Cadastro.Domain.Services
     public class ConsultaService : IConsultaService
     {
         private readonly IConsultaRepository _consultaRepository;
+        private readonly IMedicoRepository _medicoRepository;
+        private readonly IPacienteRepository _pacienteRepository;
 
-        public ConsultaService(IConsultaRepository consultaRepository)
+        public ConsultaService(IConsultaRepository consultaRepository, IMedicoRepository medicoRepository, IPacienteRepository pacienteRepository)
         {
             _consultaRepository = consultaRepository;
+            _medicoRepository = medicoRepository;
+            _pacienteRepository = pacienteRepository; 
         }
         public async Task<Consulta> CadastrarConsulta(Consulta consulta)
         {
+            var consultaValida = await ValidaCadastroConsulta(consulta);
+            if (!consultaValida) return null;
+
             await _consultaRepository.CadastrarConsulta(consulta);
-            var pessoasDiferentes = await _consultaRepository.ValidaMedicoPacientePessoasDiferentes(consulta);
-            if (!pessoasDiferentes) return null;
-            
             await _consultaRepository.UnitOfWork.SaveChangesAsync();
-            
             return consulta;
+        }
+
+        public async Task<bool> ValidaCadastroConsulta(Consulta consulta)
+        {
+            //garante que o médico e o paciente não sejam a mesma pessoa
+            var medico = await _medicoRepository.GetByIdAsync(consulta.MedicoId);
+            var paciente = await _pacienteRepository.GetByIdAsync(consulta.PacienteId);
+            if (medico.PessoaId == paciente.PessoaId) return false;
+
+            // garante que não sejam marcadas consultas com pacientes/medicos inativos no sistema
+            if(!medico.Ativo || !paciente.Ativo) return false;
+
+            // garante que só marque consulta de segunda à sábado, das 07:00h às 19:00h
+            var dia = consulta.DataCadastro.DayOfWeek;
+            var hora = consulta.DataCadastro.Hour;
+            if (dia.ToString() == "Sunday" || hora < 7 || hora> 19) return false;
+
+            //
+             
+
+            return true;
+
         }
 
         public async Task<Consulta> AtualizarConsulta(AtualizarConsultaCommand command)

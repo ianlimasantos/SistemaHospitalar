@@ -21,7 +21,8 @@ namespace Cadastro.Application.Services
             var consulta = new Consulta(novaConsultaViewModel.MedicoId, 
                                         novaConsultaViewModel.PacienteId, 
                                         novaConsultaViewModel.DataInicio);
-            await _consultaService.CadastrarConsulta(consulta);
+            var resultado = await _consultaService.CadastrarConsulta(consulta);
+            if (resultado == null) return null;
             return _mapper.Map<ConsultaViewModel>(consulta);
         }
 
