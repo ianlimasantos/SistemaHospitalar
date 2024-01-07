@@ -10,14 +10,31 @@ namespace Cadastro.Application.Services
     public class ConsultaAppService : IConsultaAppService
     {
         private readonly IConsultaService _consultaService;
+        private readonly IMedicoService _medicoService;
         private readonly IMapper _mapper;
-        public ConsultaAppService(IConsultaService consultaService, IMapper mapper) 
+        public ConsultaAppService(IConsultaService consultaService, IMapper mapper, IMedicoService medicoService) 
         {
             _consultaService = consultaService;
             _mapper = mapper;
+            _medicoService = medicoService;
         }
         public async Task<ConsultaViewModel> CadastrarConsulta(NovaConsultaViewModel novaConsultaViewModel)
         {
+            /*
+            if (novaConsultaViewModel.MedicoId == null)
+            {
+                Random random = new Random();
+                var lista = await _medicoService.ListarMedicos();
+                List<long> listaIdMedicos = new List<long>();
+                foreach (Medico medico in lista)
+                {
+                    listaIdMedicos.Add(medico.Id);
+                }
+                long idMedicoAleatorio = lista[random.N]
+                    
+                
+            }
+            */
             var consulta = new Consulta(novaConsultaViewModel.MedicoId, 
                                         novaConsultaViewModel.PacienteId, 
                                         novaConsultaViewModel.DataInicio);

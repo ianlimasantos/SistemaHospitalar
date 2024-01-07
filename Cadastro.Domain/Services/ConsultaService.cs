@@ -45,13 +45,13 @@ namespace Cadastro.Domain.Services
             // garante que só marque consulta de segunda à sábado, das 07:00h às 19:00h
             var dia = consulta.DataCadastro.DayOfWeek;
             var hora = consulta.DataCadastro.Hour;
-            if (dia.ToString() == "Sunday" || hora < 7 || hora> 19) return false;
+            //if (dia.ToString() == "Sunday" || hora < 7 || hora> 19) return false;
 
-            //
-             
+            //antecedencia mínima de 30 minutos
+            var limiteAntecedencia = consulta.DataInicio.AddMinutes(-30);
+            if (consulta.DataCadastro>limiteAntecedencia) return false;
 
             return true;
-
         }
 
         public async Task<Consulta> AtualizarConsulta(AtualizarConsultaCommand command)

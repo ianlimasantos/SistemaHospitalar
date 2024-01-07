@@ -60,7 +60,7 @@ namespace Cadastro.Infra.Data.Repositories
             if (pessoaIdMedico == pessoaIdPaciente) return false;
             return true;
 
-            */
+            
+        }*/
     }
-}
 }
