@@ -32,6 +32,9 @@ namespace Cadastro.Infra.Data.EF.Maps
             builder.Property(x => x.MotivoCancelamento)
                 .IsRequired();
 
+            builder.Property(x => x.DataFim)
+                .IsRequired();
+
             builder.HasOne(x => x.Medico)
                 .WithMany(x => x.Consultas)
                 .HasForeignKey(x => x.MedicoId);

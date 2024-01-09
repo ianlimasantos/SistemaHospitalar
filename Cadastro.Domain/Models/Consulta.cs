@@ -6,6 +6,7 @@
         public long MedicoId { get; private set; }
         public long PacienteId { get; private set; }
         public DateTime DataInicio { get; private set; }
+        public DateTime DataFim { get; private set; }
         public DateTime DataCadastro { get; private set; }
         public DateTime DataUpdate { get; private set; }
         public bool Ativo { get; private set; }
@@ -18,6 +19,7 @@
             MedicoId = medicoId;
             PacienteId = pacienteId;
             DataInicio = dataInicio;
+            DataFim = DataInicio.AddHours(1);
             DataCadastro = DateTime.Now;
             DataUpdate = DateTime.Now;
             Ativo = true;
@@ -28,6 +30,7 @@
             MedicoId = medicoId;
             PacienteId = pacienteId;
             DataInicio = dataInicio;
+            DataFim = DataInicio.AddHours(1);
             DataUpdate = DateTime.Now;
         }
 

@@ -33,6 +33,24 @@ namespace Cadastro.Infra.Data.Repositories
         {
             return await _context.Consultas.ToListAsync();
         }
+        
+        public async Task<ICollection<Consulta>> ConsultaPacienteNaData(Consulta consulta)
+        {
+            var resultado =  await _context.Consultas
+                .Where(c => c.PacienteId == consulta.PacienteId && c.DataInicio.Date == consulta.DataInicio.Date)
+                .ToListAsync();
+
+            return resultado;
+        }
+
+
+        public async Task<ICollection<Consulta>> MedicoEmConsulta(Consulta consulta)
+        {
+            return await _context.Consultas
+                .Where(c => (c.DataInicio >= consulta.DataInicio && c.DataInicio <= consulta.DataFim) ||
+                      (c.DataFim <= consulta.DataFim && c.DataFim >= consulta.DataInicio))
+                       .ToListAsync();
+        }
 
         /*
         public async Task<bool> ValidaMedicoPacientePessoasDiferentes(Consulta consulta)

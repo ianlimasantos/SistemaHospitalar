@@ -9,7 +9,7 @@ namespace Cadastro.Application.ViewModels
 {
     public class NovaConsultaViewModel
     {
-        public long? MedicoId { get; set; }
+        public long MedicoId { get; set; }
         public long PacienteId { get; set; }
         public DateTime DataInicio { get; set; }
         public DateTime DataCadastro { get; set; }

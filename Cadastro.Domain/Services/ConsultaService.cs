@@ -51,6 +51,15 @@ namespace Cadastro.Domain.Services
             var limiteAntecedencia = consulta.DataInicio.AddMinutes(-30);
             if (consulta.DataCadastro>limiteAntecedencia) return false;
 
+
+            // não permite que o paciente tenha duas consultas no mesmo dia
+            var consultaMarcadaNoDia = await _consultaRepository.ConsultaPacienteNaData(consulta);
+            if (consultaMarcadaNoDia.Count > 0) return false;
+
+            // não permite o agendamento de consultas com um médico que possui outra consulta agendada na mesma data/hora
+            var medicoEmConsulta = await _consultaRepository.MedicoEmConsulta(consulta);
+            if(medicoEmConsulta.Count > 0) return false;
+
             return true;
         }
 
