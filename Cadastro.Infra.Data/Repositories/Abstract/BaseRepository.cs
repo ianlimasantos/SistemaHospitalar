@@ -21,22 +21,15 @@ namespace Cadastro.Infra.Data.Repositories.Abstract
         }
         public IUnitOfWork UnitOfWork => _context;
 
-        public async Task<T> GetByIdAsync(long id)
-        {
-            try
-            {
-                var teste = await _context.Set<T>().FindAsync(id);
-                return teste;
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine("AAAAAAAAAAAA " + ex);
-                return await _context.Set<T>().FindAsync(id);
-            }
-        }
         public async Task<IEnumerable<T>> GetAll(Expression<Func<T, bool>> predicate)
         {
             return await _context.Set<T>().Where(predicate).ToListAsync();
+        }
+
+        public async Task<T> GetByIdAsync(long id)
+        {
+            var teste = await _context.Set<T>().FindAsync(id);
+            return teste;
         }
 
     }

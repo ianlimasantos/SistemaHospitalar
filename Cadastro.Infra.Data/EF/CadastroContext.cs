@@ -12,16 +12,11 @@ namespace Cadastro.Infra.Data.EF
         public CadastroContext(DbContextOptions options) : base(options) 
         {
             ChangeTracker.LazyLoadingEnabled = false;
-            CriarBancoCasoNaoExista();
+
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     => optionsBuilder.LogTo(Console.WriteLine);
 
-        private void CriarBancoCasoNaoExista()
-        {
-            if (!(Database.GetService<IDatabaseCreator>() as RelationalDatabaseCreator).Exists())
-                Database.EnsureCreated();
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

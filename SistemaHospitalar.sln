@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cadastro.Application", "Cad
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cadastro.Consulta", "CadastroConsulta\Cadastro.Consulta.csproj", "{D07C3EDC-8FB9-49EE-ABC7-78FA79F22A4D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaHospitalar.MVC", "SistemaHospitalar.MVC\SistemaHospitalar.MVC.csproj", "{AE611A9B-5907-4E2F-B9E0-84659D32221C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{D07C3EDC-8FB9-49EE-ABC7-78FA79F22A4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D07C3EDC-8FB9-49EE-ABC7-78FA79F22A4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D07C3EDC-8FB9-49EE-ABC7-78FA79F22A4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE611A9B-5907-4E2F-B9E0-84659D32221C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE611A9B-5907-4E2F-B9E0-84659D32221C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE611A9B-5907-4E2F-B9E0-84659D32221C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE611A9B-5907-4E2F-B9E0-84659D32221C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
