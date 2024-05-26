@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Home\Privacy.cshtml" />
+    <Content Remove="Views\Home\Sopa.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Cadastro.Application\Cadastro.Application.csproj" />
     <ProjectReference Include="..\Cadastro.Infra.IoC\Cadastro.Infra.IoC.csproj" />
   </ItemGroup>

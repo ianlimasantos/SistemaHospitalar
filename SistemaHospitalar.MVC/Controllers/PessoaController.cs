@@ -14,12 +14,22 @@ namespace Cadastro.Consulta.Controllers
             _pessoaAppService = pessoaAppService;
         }
 
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult PaginaComForms()
+        {
+            return View("CadastrarPessoa");
+        }
+
         [HttpPost]
         public async Task<IActionResult> CadastrarPessoa([FromBody] NovaPessoaViewModel vm)
         {
             var result = await _pessoaAppService.CadastrarPessoa(vm);
-            if (result == null) return BadRequest("Não foi possível cadastrar nenhum usuário");
-            return View(result);
+            var a = 'a';
+            return Json (new { Status = true, Redirect = @Url.Action("ListarPessoas", "Pessoa") });
         }
 
         [HttpGet]
@@ -34,10 +44,14 @@ namespace Cadastro.Consulta.Controllers
         [HttpGet]
         public async Task<IActionResult> ListarPessoas()
         {
-            var result = await _pessoaAppService.ListarPessoas();
-            //if (result == null) return BadRequest("Não foi possível listar os usuários");
-            //return Ok(result);
-            return View();
+            IEnumerable<PessoaViewModel> pessoasViewModel = await _pessoaAppService.ListarPessoas();
+            return Json(new { Entity = pessoasViewModel });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ListarPessoasTela()
+        {
+            return View("ListarPessoas");
         }
 
         [HttpPut]

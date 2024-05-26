@@ -1,0 +1,48 @@
+﻿
+
+<button onclick="listarPessoas()"> Pegar Pessoas</button>
+
+ <h1>Teste</h1>
+<script>
+
+    function listarPessoas() {
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", '@Url.Action("ListarPessoas", "Pessoa")', true);
+
+        xhr.onload = function () {
+            var response = JSON.parse(this.response);
+            var count = 0;
+
+            console.log(response);
+
+            response.entity.forEach(
+                entity => { 
+                    if (entity.nome == "ian") {
+                        count++;
+                    }
+                        
+                }
+            );
+
+            alert('count vale: ' + count);
+
+
+            // if (Array.isArray(response.entity)) {
+            //     console.log(response.Entity);
+
+            //     // Acessar e imprimir o primeiro item do array
+            //     if (response.entity.length > 0) {
+            //         const primeiroItem = response.entity[0];
+            //         console.log("Primeiro item:", primeiroItem);
+            //         console.log("Nome do primeiro item:", primeiroItem.nome);
+            //     } else {
+            //         console.log("O array 'Entity' está vazio.");
+            //     }
+            // } else {
+            //     console.log("A resposta não contém um array de pessoas: ", response);
+            // }
+        }
+
+        xhr.send();
+    }
+</script>

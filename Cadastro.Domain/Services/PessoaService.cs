@@ -5,6 +5,7 @@ using Cadastro.Domain.Models.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,7 +23,15 @@ namespace Cadastro.Domain.Services
         public async Task<Pessoa> CadastrarPessoa(Pessoa pessoa)
         {
             await _pessoaRepository.CadastrarPessoa(pessoa);
-            await _pessoaRepository.UnitOfWork.SaveChangesAsync();
+            try
+            {
+                await _pessoaRepository.UnitOfWork.SaveChangesAsync();
+            }
+            catch(Exception ex)
+            {
+                var erro = ex;
+            }
+         
             return pessoa;
         }
         public async Task<Pessoa> AtualizarPessoa(AtualizarPessoaCommand command)
@@ -33,7 +42,15 @@ namespace Cadastro.Domain.Services
             pessoa.Atualizar(command.Nome,
                              command.DataNascimento);
             await _pessoaRepository.AtualizarPessoa(pessoa);
-            await _pessoaRepository.UnitOfWork.SaveChangesAsync();
+            try
+            {
+                await _pessoaRepository.UnitOfWork.SaveChangesAsync();
+            }
+            catch(Exception ex) 
+            {
+                var erro = ex;
+            }
+            
             return pessoa;
         }
 

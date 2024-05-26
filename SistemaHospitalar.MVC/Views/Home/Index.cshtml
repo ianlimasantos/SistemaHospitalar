@@ -1,8 +1,14 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿<h1>Teste </h1>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<button onclick="mudarPagina()"> Listar Pessoas</button>
+<button onclick="mudarPaginaPaciente()"> Ir para o formulário de Pacientes.</button>
+
+<script type="text/javascript">
+    function mudarPagina() {
+        window.location = '@Url.Action("ListarPessoasTela", "Pessoa")';
+    }
+
+    function mudarPaginaPaciente() {
+        window.location = '@Url.Action("PaginaComForms", "Pessoa")';
+    }
+</script>

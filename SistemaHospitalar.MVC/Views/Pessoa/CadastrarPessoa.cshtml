@@ -1,0 +1,61 @@
+﻿@model Cadastro.Application.ViewModels.NovaPessoaViewModel
+
+@{
+    ViewData["Title"] = "Cadastrar Pessoa";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.LabelFor(model => model.Nome)
+        @Html.TextBoxFor(model => model.Nome, new {id = "Nome"})
+    </div>
+    <div>
+        @Html.LabelFor(model => model.Email)
+        @Html.TextBoxFor(model => model.Email, new {id = "Email"})
+    </div>
+    <div>
+        @Html.LabelFor(model => model.CPF)
+        @Html.TextBoxFor(model => model.CPF, new { id = "Cpf" })
+    </div>
+    <div>
+        @Html.LabelFor(model => model.DataNascimento)
+        @Html.TextBoxFor(model => model.DataNascimento, "{yyyy-MM-dd}", new {id = "DataNascimento", type = "date"})
+    </div>
+
+    
+    <button onclick="return enviarFormulario()"> Enviar formulário</button>
+}
+
+<script type="text/javascript">
+
+    function enviarFormulario(){
+        let Nome = document.getElementById("Nome").value;
+        let Cpf = document.getElementById("Cpf").value;
+        let Email = document.getElementById("Email").value;
+        let DataNascimento = document.getElementById("DataNascimento").value;
+        let body = { "Nome": Nome , "Cpf": Cpf, "Email": Email, "DataNascimento": DataNascimento};
+        let xhr = new XMLHttpRequest();
+        xhr.open('Post', '@Url.Action("CadastrarPessoa", "Pessoa")', true);
+        xhr.setRequestHeader("Content-type", "application/json");
+        xhr.send(JSON.stringify(body));
+
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                let response = JSON.parse(this.responseText);
+                console.log(response.status);
+;               if (response.status == true) {
+                    window.location = response.redirect;
+                } else {
+                    console.log("Erro ao cadastrar pessoa");
+                }
+            } else {
+                console.log("Erro na requisição: " + xhr.status);
+            }
+        }
+        return false;
+
+    }
+</script>
