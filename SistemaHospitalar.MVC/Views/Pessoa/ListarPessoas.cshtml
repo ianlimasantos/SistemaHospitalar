@@ -1,9 +1,65 @@
-﻿
+﻿<style>
+    #modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Fundo cinza semi-transparente */
+        z-index: 1000; /* Coloca o overlay acima de outros elementos */
+    }
 
+    #modal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); /* Centraliza o modal */
+        background-color: white; /* Fundo branco para o modal */
+        padding: 20px; /* Adiciona um pouco de padding */
+        border-radius: 8px; /* Arredonda os cantos */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidade */
+        z-index: 1001; /* Coloca o modal acima do overlay */
+    }
+
+</style>
+
+<h1>Teste</h1>
 <button onclick="listarPessoas()"> Pegar Pessoas</button>
 
- <h1>Teste</h1>
+<div id="modal-overlay" style="display:none;"></div>
+
+<button onclick ="exibirModal()"> Exibir modal</button>
+<div id="modal" style="display:none; background-color:aqua">
+    <p>Olá, sou um modal!</p>
+    <p id="modalText">.</p>
+    <ul id="addHere"></ul>
+    <button onclick="removerModal()" id="btn-cancelar">Cancelar</button>
+    <button onclick="mostrarPessoas()" id="btn-confirmar">Ok</button>
+    <button onclick="salvarPessoa()" id="btn-confirmar">Salvar Pessoa</button>
+</div>
+
 <script>
+
+    var pessoas = [];
+
+    function exibirModal() {
+        $("#addHere").empty();
+        $("#modal-overlay").show();
+        $("#modalText").append("O aluno se chama " + pessoas[1].nome);
+        $("#modal").show();
+    }
+
+    function removerModal() {
+        $("#modal-overlay").hide();
+        $("#modal").hide();
+    }
+
+    function mostrarPessoas() {
+        $("#addHere").empty();
+        pessoas.forEach(function(pessoa) {
+            $("#addHere").append('<li>' + pessoa.nome + '</li>' )
+        })
+    }
 
     function listarPessoas() {
         let xhr = new XMLHttpRequest();
@@ -12,8 +68,13 @@
         xhr.onload = function () {
             var response = JSON.parse(this.response);
             var count = 0;
-
+            
             console.log(response);
+
+            pessoas = response.entity;
+            console.log("babado");
+            
+            console.log(pessoas);
 
             response.entity.forEach(
                 entity => { 
@@ -45,4 +106,23 @@
 
         xhr.send();
     }
+
+    function salvarPessoa() {
+        let xhr = new XMLHttpRequest();
+        let body = pessoas[0];
+
+        xhr.open("POST", '@Url.Action("CadastrarPessoa", "Pessoa")', true);
+        xhr.setRequestHeader("Content-type", "application/json");
+        xhr.send(JSON.stringify(body));
+
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                let response = JSON.parse(xhr.responseText);
+                console.log(response.status);
+            }
+        }
+
+        xhr.send();
+    }
+
 </script>

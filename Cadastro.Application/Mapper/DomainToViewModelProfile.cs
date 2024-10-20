@@ -13,10 +13,10 @@ namespace Cadastro.Application.Mapper
     {
         public DomainToViewModelProfile() 
         {
-            CreateMap<Pessoa, PessoaViewModel>();
-            CreateMap<Medico, MedicoViewModel>();
-            CreateMap<Paciente, PacienteViewModel>();
-            CreateMap<Consulta, ConsultaViewModel>();
+            CreateMap<Pessoa, PessoaViewModel>().ReverseMap();
+            CreateMap<Medico, MedicoViewModel>().ReverseMap();
+            CreateMap<Paciente, PacienteViewModel>().ReverseMap();
+            CreateMap<Consulta, ConsultaViewModel>().ReverseMap();
         }
     }
 }

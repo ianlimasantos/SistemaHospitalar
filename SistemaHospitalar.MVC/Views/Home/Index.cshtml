@@ -1,9 +1,17 @@
-﻿<h1>Teste </h1>
+﻿<h1 class="texto">Teste </h1>
+
 
 <button onclick="mudarPagina()"> Listar Pessoas</button>
 <button onclick="mudarPaginaPaciente()"> Ir para o formulário de Pacientes.</button>
+@Html.Partial("_PartialViewTeste")
+@* <partial name="_PartialViewTeste" /> *@
 
 <script type="text/javascript">
+
+    $(".texto").click(function () {
+        $(".texto").hide();
+    });
+
     function mudarPagina() {
         window.location = '@Url.Action("ListarPessoasTela", "Pessoa")';
     }
